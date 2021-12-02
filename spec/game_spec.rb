@@ -7,11 +7,11 @@ describe Game do
   
   context '#add_players'
   it 'should accept player1 and retrieve it' do
-    expect(game.player1).to eq(player1)
+    expect(game.players[0]).to eq(player1)
   end
 
   it 'should accept player2 and retrieve it' do
-    expect(game.player2).to eq(player2)
+    expect(game.players[1]).to eq(player2)
   end
 
   context '#attack' 
@@ -20,11 +20,16 @@ describe Game do
     game.attack(player2)
   end
 
+  context 'current_turn' do
+    it 'starts as player 1' do
+      expect(game.current_turn).to eq player1
+    end
+  end
+
   context '#switch_turn'
   it 'should switch turns between players' do
-    allow(player2).to receive(:receive_damage)
-    game.attack(player2)
-    expect(game.attacker).to eq(player2)
+    game.switch_turn
+    expect(game.current_turn).to eq(player2)
   end    
 
 end

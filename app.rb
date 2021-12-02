@@ -28,6 +28,7 @@ class Battle < Sinatra::Base
   post '/attack_player' do
     @game = $game
     @game.attack(@game.target)
+    @game.switch_turn
     redirect '/play'    
   end
 
