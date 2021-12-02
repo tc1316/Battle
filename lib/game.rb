@@ -2,8 +2,6 @@ class Game
   attr_reader :previous_action, :turn_counter, :current_turn, :target, :players
   
   def initialize(player1,player2)
-    # @player1 = player1 
-    # @player2 = player2
     @players = [player1, player2]
     @turn_counter = 0
     @current_turn = player1 #Default
@@ -17,7 +15,6 @@ class Game
   def attack(player)
     player.receive_damage
     execute_action("Player attacked")
-    # turn_increment
   end
 
   def switch_turn 
@@ -25,19 +22,5 @@ class Game
     @current_turn = @players[@turn_counter % 2]
     @target = @players[(@turn_counter+1) % 2]
   end
-
-  # def turn_increment
-  #   @turn_counter += 1
-  #   assign_turn
-  # end
-
-  def assign_turn
-    @current_turn = @players[@turn_counter % 2]
-
-  end
-    
-  
-  
-  
 
 end

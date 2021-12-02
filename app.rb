@@ -16,17 +16,17 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $game = Game.new(Player.new(params[:name1]),Player.new(params[:name2]))
+    @@game = Game.new(Player.new(params[:name1]),Player.new(params[:name2]))
     redirect '/play'
   end
 
   get '/play' do
-    @game = $game
+    @game = @@game
     erb(:play)
   end
 
   post '/attack_player' do
-    @game = $game
+    @game = @@game
     @game.attack(@game.target)
     @game.switch_turn
     redirect '/play'    

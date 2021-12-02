@@ -12,6 +12,16 @@ feature "can see player 2 HP" do
   end
 end
 
+feature "can see player 1 HP" do
+  before do
+    sign_in_and_play
+  end
+
+  scenario "as player 2" do
+    expect(page).to have_content "Kim HP: 100"
+  end
+end
+
 feature "can attack player 2" do
 
   scenario "see player 2 HP decrease by 10" do
@@ -37,5 +47,16 @@ feature 'can switch turns' do
     expect(page).not_to have_content "It is Kim's turn. It is turn 2"
     expect(page).to have_content "It is Chris's turn. It is turn 2"
   end
+end
 
+feature "can attack player 1" do
+
+    scenario "after player 2 has been attacked" do
+      sign_in_and_play
+      click_button("Attack!")
+      click_button("Attack!")
+      expect(page).not_to have_content 'Kim HP: 100'
+      expect(page).to have_content "Kim HP: 90"
+    end
+  
 end
