@@ -16,7 +16,15 @@ describe Game do
 
   context '#attack' 
   it "should inform the player to receive damage" do
-    expect(player1).to receive(:receive_damage)
-    game.attack(player1)
+    expect(player2).to receive(:receive_damage)
+    game.attack(player2)
   end
+
+  context '#switch_turn'
+  it 'should switch turns between players' do
+    allow(player2).to receive(:receive_damage)
+    game.attack(player2)
+    expect(game.attacker).to eq(player2)
+  end    
+
 end

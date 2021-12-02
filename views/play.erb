@@ -1,11 +1,16 @@
 <h1> <%= @game.player1.read_name %> vs <%= @game.player2.read_name %> </h1>
 
+<h1> It is <%= @game.attacker.read_name %>'s turn. It is turn <%= @game.turn_counter + 1%>
+
+
+<h2><%= @game.player1.read_name %> HP: <%= @game.player1.read_hp %> </h2>
 <h2><%= @game.player2.read_name %> HP: <%= @game.player2.read_hp %> </h2>
 
-<form action="/attack_player2" method="post">
+
+<form action="/attack_player" method="post">
     <input type="submit" value="Attack!">
 </form>
 
-<% if $game.previous_action == "P2 attacked" %>
-<h3> Attack on <%= @game.player2.read_name %> successful! </h3>
+<% if @game.previous_action == "Player attacked" %>
+<h3> Attack on <%= @game.players[@game.turn_counter % 2].read_name %> successful! </h3>
 <% end %>

@@ -26,5 +26,16 @@ feature "can attack player 2" do
     click_button("Attack!")
     expect(page).to have_content "Attack on Chris successful!"
   end
-  
+end
+
+
+feature 'can switch turns' do
+
+  scenario "after player 1 attacks player 2" do
+    sign_in_and_play
+    click_button("Attack!")
+    expect(page).not_to have_content "It is Kim's turn. It is turn 2"
+    expect(page).to have_content "It is Chris's turn. It is turn 2"
+  end
+
 end
